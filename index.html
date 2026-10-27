@@ -138,8 +138,8 @@ function makeBuilding(x,z,seed){
 for(let side of [-1,1]){
  for(let i=0;i<12;i++){
   const z=-360+i*35;
-  makeBuilding(side*(18+(i%3)*4),z,i+(side===1?7:0));
-  if(i%2===0) makeBuilding(side*(37+(i%4)*3),z-10,i+15+(side===1?5:0));
+  makeBuilding(side*(26+(i%3)*5),z,i+(side===1?7:0));
+  if(i%2===0) makeBuilding(side*(47+(i%4)*4),z-10,i+15+(side===1?5:0));
  }
 }
 // electrical poles and overhead cables on city edge
@@ -235,9 +235,9 @@ function animate(){
  scene.children.forEach(obj=>{
   if(obj.userData.scrollCity){obj.position.z=shift;}
  });
- const target=new THREE.Vector3(player.position.x*.38,10.7,15.2);
+ const target=new THREE.Vector3(player.position.x*.32,15.2,18);
  camera.position.lerp(target,1-Math.pow(.001,dt));
- camera.lookAt(player.position.x*.55,9.2,-15);
+ camera.lookAt(player.position.x*.38,8.25,-32);
  renderer.render(scene,camera);
 }
 animate();

@@ -69,10 +69,11 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-
+import { createEgyptianBuildings } from './buildings.js';
 const root=document.querySelector('#game');
 
 const scene=new THREE.Scene();
+ const roadsideBuildings=createEgyptianBuildings(scene);
 scene.background=new THREE.Color(0x9bb5c7);
 scene.fog=new THREE.Fog(0x9bb5c7,90,360);
 
@@ -376,6 +377,7 @@ function animate(){
  // حركة الطريق لمحاكاة القيادة للأمام
  const shift=started?travel%420:0;
  road.position.z=shift;
+ roadsideBuildings.position.z=shift;
 
  // كاميرا خلف التوك توك
  const target=new THREE.Vector3(

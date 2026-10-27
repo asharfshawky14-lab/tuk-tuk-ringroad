@@ -167,6 +167,16 @@ for(const x of [-4.5,0,4.5]){
  }
 }
 
+// نسخة ثانية من الطريق لمنع الاختفاء عند نهاية الدورة
+const roadLoop = road.clone(true);
+roadLoop.position.z = -420;
+scene.add(roadLoop);
+
+// نسخة ثانية من العمارات لاستمرار المشهد
+const roadsideBuildingsLoop = roadsideBuildings.clone(true);
+roadsideBuildingsLoop.position.z = -420;
+scene.add(roadsideBuildingsLoop);
+
 // إنشاء التوك توك والعربيات
 function makeCar(color=0xd7d5ca,isTuk=false){
  const g=new THREE.Group();
@@ -377,8 +387,10 @@ function animate(){
  // حركة الطريق لمحاكاة القيادة للأمام
  const shift=started?travel%420:0;
  road.position.z=shift;
- roadsideBuildings.position.z=shift;
+roadLoop.position.z=shift-420;
 
+roadsideBuildings.position.z=shift;
+roadsideBuildingsLoop.position.z=shift-420;
  // كاميرا خلف التوك توك
  const target=new THREE.Vector3(
   player.position.x*.32,
